@@ -2,23 +2,15 @@ from django.db import models
 
 class Link(models.Model):
 	url = models.URLField()
-	def __unicode__(self):
-		return self.name
 
 class Tag(models.Model):
 	tag = models.CharField(max_length=16)
-	def __unicode__(self):
-		return self.name
 
 class Source(models.Model):
 	source = models.CharField(max_length=160)
-	def __unicode__(self):
-		return self.name
 
 class Image(models.Model):
 	url = models.URLField()
-	def __unicode__(self):
-		return self.name
 
 class Idea(models.Model):
 	title = models.CharField(max_length=32)

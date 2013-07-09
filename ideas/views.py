@@ -1,9 +1,10 @@
 from django.http import HttpResponse
+from django.template.response import TemplateResponse
 from models import Idea
 
 def home(request):
-	text = "<p>Hello World!</p>"
-	return HttpResponse(text)
+	ideas = Idea.objects.all()
+	return TemplateResponse(request, 'home.html', {'ideas': ideas})
 
 def single_idea(request, title):
 	idea = Idea.objects.get(title__exact=title)
