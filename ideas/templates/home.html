@@ -2,17 +2,18 @@
 <html>
 <head>
 	{% load staticfiles %}
-	<style rel="stylesheet" href="{% static 'styles/home.css' %}"></style>
+	<style rel="stylesheet" href="{% static "home.css" %}"></style>
 </head>
 <body>
 
 	{% for idea in ideas %}
 	<div class="idea">
-	<div class="info"><h2>{{ idea.title }}</h2><p> - {{ idea.short_desc }}</p></div>
-	<div class="tags"><p>
-		{% for tag in idea.tag %}
-			{{ tag }},
-		{% endfor %}</p>
+	<div class="info"><h2>TITLE: {{ idea.title }}</h2><p>SHORT_DESC: {{ idea.short_desc }}</p></div>
+	<div class="tags"><p>TAGS: 
+	    {% for tag in idea.tags.all %}
+		{{ tag.tag }},
+	    {% endfor %}
+	    </p>
 	</div>
 	</div>
 	{% endfor %}

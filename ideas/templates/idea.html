@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load staticfiles %}
+	<style rel="stylesheet" href="{% static 'styles/idea.css' %}"></style>
+</head>
+<body>
+
+	<div class="info"><h2>TITLE: {{ idea.title }}</h2>
+	    <h3>SHORT_DESC: </h3><p>{{ idea.short_desc }}</p>
+	    <h3>LONG_DESC: </h3><p> {{ idea.long_desc }}</p>
+
+	    <div class="links">
+		<h3>LINKS</h3>
+		<ul>
+		    {% for link in idea.links.all %}
+		    <li><a href="{{ link.url }}">{{ link.url }}</a></li>
+		    {% endfor %}
+		</ul>
+	    </div>
+
+	    <div class="sources">
+		<h3>SOURCES</h3>
+		<ul>
+		    {% for source in idea.sources.all %}
+			<li>{{ source.source }}</li>
+		    {% endfor %}
+		</ul>
+	    </div>
+
+	    <div class="images">
+		<h3>IMAGES</h3>
+		<ul>
+		    {% for image in idea.images.all %}
+		    <li><img src="{{ image.url}}" /></li>
+		    {% endfor %}
+		</ul>
+	    </div>
+
+	    <div class="tags"><p>TAGS: 
+		{% for tag in idea.tags.all %}
+		    {{ tag.tag }},
+		{% endfor %}
+		</p>
+	    </div>
+
+	    <p>DATE_FORMED: {{ idea.date_formed }}</p>
+	</div>
+
+</body>
+</html>
