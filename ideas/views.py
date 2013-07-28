@@ -8,8 +8,8 @@ def home(request):
 	return TemplateResponse(request, 'home.html', {'ideas': ideas})
 
 def single_idea(request, title):
-	title_nospaces = title.replace('_', ' ')
-	idea = Idea.objects.get(title__exact=title_nospaces)
+	title_withspaces = title.replace('_', ' ')
+	idea = Idea.objects.get(title__exact=title_withspaces)
 	return TemplateResponse(request, 'idea.html', {'idea': idea})
 
 def new_idea(request):
