@@ -1,4 +1,4 @@
-# Django settings for camil project.
+# Django settings for camil project
 import os.path
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -12,17 +12,15 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'ideas.sqlite3',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
-}
-
+	  'default': {
+	          'ENGINE': 'django.db.backends.postgresql_psycopg2',
+		  'NAME': 'dfikhungaplji1',
+		  'HOST': 'ec2-54-225-89-169.compute-1.amazonaws.com',
+		  'PORT': 5432,
+		  'USER': 'muylbpxliuojmt',
+		  'PASSWORD': 'fyCSIb7pnSFbHi7N3e-vkjdNi5'
+		}
+	  }
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
@@ -158,8 +156,11 @@ LOGGING = {
 }
 
 # Parse database configuration from $DATABASE_URL
-#import dj_database_url
-#DATABASES['default'] = dj_database_url.config()
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(default='postgres://matthew:test@localhost/ideas.postgres')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
