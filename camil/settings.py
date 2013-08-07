@@ -21,6 +21,19 @@ DATABASES = {
 		  'PASSWORD': 'fyCSIb7pnSFbHi7N3e-vkjdNi5'
 		}
 	  }
+
+
+#DATABASES = {
+#	  'default': {
+#	          'ENGINE': 'django.db.backends.sqlite3',
+#		  'NAME': 'ideas.sqlite',
+#		  'HOST': '',
+#		  'PORT': '',
+#		  'USER': '',
+#		  'PASSWORD': ''
+#		}
+#	  }
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
