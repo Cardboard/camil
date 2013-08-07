@@ -1,7 +1,6 @@
 Django==1.5.1
 Mako==0.7.3
 MarkupSafe==0.15
-PAM==0.4.2
 Pillow==2.0.0
 South==0.8.1
 Twisted-Core==12.3.0
