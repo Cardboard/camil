@@ -3,7 +3,7 @@
 <head>
 	{% load staticfiles %}
 	{% load hometags %}
-	<style rel="stylesheet" href="{% static "home.css" %}"></style>
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/home.css' %}">
 </head>
 <body>
 
@@ -18,6 +18,8 @@
 	</div>
 	</div>
     {% endfor %}
+
+    <a href="/ideas/new/"><img src="{% static 'new_idea.png' %}"></a>
 
 </body>
 </html>

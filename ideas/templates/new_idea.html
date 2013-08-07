@@ -7,9 +7,53 @@
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-    <form action="/new/"  method="post">
+    {% if edit %}
+	<form action="/ideas/edit/{{ idea.title_nospaces }}/" method="post">
+    {% else %}
+	<form action="/ideas/new/"  method="post">
+    {% endif %}
 	{% csrf_token %}
-	{{ form.as_p }}
+	{{ form.non_field_errors }}
+	<div class="fieldwrapper">
+	    {{ form.title.errors }}
+	    <label for="id_title">Title:</label>
+	    {{ form.title }}
+	</div>
+	<div class="fieldwrapper">
+	    {{ form.short_desc.errors }}
+	    <label for="id_short_desc">Short desc:</label>
+	    {{ form.short_desc }}
+	</div>
+	<div class="fieldwrapper">
+	    {{ form.long_desc.errors }}
+	    <label for="id_long_desc">Long desc:</label>
+	    {{ form.long_desc }}
+	</div>
+	<div class="fieldwrapper">
+	    {{ form.links.errors }}
+	    <label for="id_links">Links:</label>
+	    {{ form.links}}
+	</div>
+	<div class="fieldwrapper">
+	    {{ form.tags.errors }}
+	    <label for="id_tags">Tags:</label>
+	    {{ form.tags }}
+	</div>
+	<div class="fieldwrapper">
+	    {{ form.sources.errors }}
+	    <label for="id_sources">Sources:</label>
+	    {{ form.sources }}
+	</div>
+	<div class="fieldwrapper">
+	    {{ form.images.errors }}
+	    <label for="id_images">Images:</label>
+	    {{ form.images }}
+	</div>
+	<div class="fieldwrapper">
+	    {{ form.date_formed.errors }}
+	    <label for="id_date_formed">Date formed:</label>
+	    {{ form.date_formed }}
+	</div>
     <input type="submit" value="Submit" />
     </form>
 </body>
