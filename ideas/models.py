@@ -15,7 +15,7 @@ class Image(models.Model):
     url = models.URLField()
 
 class Idea(models.Model):
-    title = models.CharField(max_length=32)
+    title = models.CharField(max_length=32, unique=True)
     short_desc = models.CharField(max_length=128)
     long_desc = models.CharField(max_length=255)
     links = models.ManyToManyField(Link, blank=True)
@@ -25,7 +25,26 @@ class Idea(models.Model):
     date_formed = models.DateField()
 
     def __unicode__(self):
-	    return self.title
+        return self.title
+
+    def title_nospaces(self):
+	return self.title.replace(' ', '_')
+
+    def are_links(self):
+	if self.links.all().values()[0]['url'] != u'':
+	    return True 
+
+    def are_tags(self):
+	if self.tags.all().values()[0]['tag'] != u'':
+	    return True
+
+    def are_sources(self):
+	if self.sources.all().values()[0]['source'] != u'':
+	    return True
+
+    def are_images(self):
+	if self.images.all().values()[0]['url'] != u'':
+	    return True
 
 class IdeaForm(forms.Form):
     title = forms.CharField(max_length=32)
@@ -37,6 +56,35 @@ class IdeaForm(forms.Form):
     images = forms.CharField(required=False)
     date_formed = forms.DateField(
 	widget=forms.widgets.DateInput(format="%m/%d/%Y"))
+
+#    def clean_title(self):
+#	cleaned_title = self.cleaned_data
+#	try:
+#	    title = cleaned_title['title']
+#	    try:
+#		idea = Idea.objects.get(title__exact=title)
+#	    except:
+#		idea = False
+#	    if title and idea:
+#		raise forms.ValidationError("Title must be unique")
+#	except KeyError:
+#	    pass 
+#	return cleaned_title
+
+    def clean(self):
+	cleaned_data = self.cleaned_data
+	print('IdeaForm.clean()')
+	try:
+	    title = cleaned_data['title']
+	    try:
+		idea = Idea.objects.get(title__exact=title)
+	    except:
+		idea = False
+	    if title and idea:
+		raise forms.ValidationError("Title must be unique")
+	except KeyError:
+	    pass 
+	return cleaned_data
 
 #class IdeaForm(ModelForm):
 #    class Meta:
