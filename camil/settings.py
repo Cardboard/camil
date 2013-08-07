@@ -1,5 +1,6 @@
 # Django settings for camil project
 import os.path
+import dj_database_url
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = True
@@ -12,14 +13,14 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-	  'default': {
-	          'ENGINE': 'django.db.backends.postgresql_psycopg2',
-		  'NAME': 'dfikhungaplji1',
-		  'HOST': 'ec2-54-225-89-169.compute-1.amazonaws.com',
-		  'PORT': 5432,
-		  'USER': 'muylbpxliuojmt',
-		  'PASSWORD': 'fyCSIb7pnSFbHi7N3e-vkjdNi5'
-		}
+	  'default':dj_database_url.config()# {
+#	          'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#		  'NAME': 'dfikhungaplji1',
+#		  'HOST': 'ec2-54-225-89-169.compute-1.amazonaws.com',
+#		  'PORT': 5432,
+#		  'USER': 'muylbpxliuojmt',
+#		  'PASSWORD': 'fyCSIb7pnSFbHi7N3e-vkjdNi5'
+#		}
 	  }
 
 
@@ -170,7 +171,7 @@ LOGGING = {
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] = dj_database_url.config(default='postgres://matthew:test@localhost/ideas.postgres')
+DATABASES['default'] = dj_database_url.config(default='sqlite://matthew:test@localhost/ideas.sqlite3')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
