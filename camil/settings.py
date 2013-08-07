@@ -12,8 +12,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-	  'default':dj_database_url.config()# {
+#DATABASES = {
+#	  'default': {
 #	          'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #		  'NAME': 'dfikhungaplji1',
 #		  'HOST': 'ec2-54-225-89-169.compute-1.amazonaws.com',
@@ -170,7 +170,6 @@ LOGGING = {
 }
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
 DATABASES['default'] = dj_database_url.config(default='sqlite://matthew:test@localhost/ideas.sqlite3')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
