@@ -16,6 +16,10 @@ class Image(models.Model):
 
 class Idea(models.Model):
     title = models.CharField(max_length=32, unique=True)
+    CHOICES = (('idea', 'idea'),
+		('wip', 'wip'),
+		('finished', 'finished'))
+    status = models.CharField(max_length=8, choices=CHOICES)
     short_desc = models.CharField(max_length=128)
     long_desc = models.CharField(max_length=255)
     links = models.ManyToManyField(Link, blank=True)
@@ -48,6 +52,10 @@ class Idea(models.Model):
 
 class IdeaForm(forms.Form):
     title = forms.CharField(max_length=32)
+    CHOICES = (('idea', 'idea'),
+		('wip', 'wip'),
+		('finished', 'finished'))
+    status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
     short_desc = forms.CharField(max_length=128)
     long_desc = forms.CharField(max_length=255)
     links = forms.CharField(required=False)

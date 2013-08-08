@@ -1,25 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{% load staticfiles %}
-	{% load hometags %}
-	<link rel="stylesheet" type="text/css" href="{% static 'styles/home.css' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+    {% load staticfiles %}
+    {% load hometags %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css' %}">
 </head>
 <body>
 
-    {% for idea in ideas %}
-	<div class="idea">
-	    <div class="info"><h2><a href="idea/{{ idea.title|replacespaces }}/">TITLE: {{ idea.title }}</a></h2><p>SHORT_DESC: {{ idea.short_desc }}</p></div>
-	<div class="tags"><p>TAGS: 
-	    {% for tag in idea.tags.all %}
-		{{ tag.tag }},
-	    {% endfor %}
-	    </p>
-	</div>
-	</div>
-    {% endfor %}
+    <h1 id="main_header">camil
+    <a id="button_new" href="/ideas/new/">[+]</a>
+    </h1>
 
-    <a href="/ideas/new/"><img src="{% static 'new_idea.png' %}"></a>
+    <div class="category">
+	<div class="cat_header">wip</div>
+	{% for idea in ideas|filter_status:'wip' %}
+	    <div class="object">
+		<div class="info">
+		    <h2><a href="idea/{{ idea.title|replacespaces }}/">{{ idea.title }}</a></h2>
+		    <p>{{ idea.short_desc }}</p></div>
+	    <div class="tags"><p> 
+		{% for tag in idea.tags.all %}
+		    {{ tag.tag }},
+		{% endfor %}
+		</p>
+	    </div>
+	    </div>
+	{% endfor %}
+    </div>
+
+    <div class="category">
+	<div class="cat_header">idea</div>
+	{% for idea in ideas|filter_status:'idea' %}
+	    <div class="object">
+		<div class="info">
+		    <h2><a href="idea/{{ idea.title|replacespaces }}/">{{ idea.title }}</a></h2>
+		    <p>{{ idea.short_desc }}</p></div>
+	    <div class="tags"><p> 
+		{% for tag in idea.tags.all %}
+		    {{ tag.tag }},
+		{% endfor %}
+		</p>
+	    </div>
+	    </div>
+	{% endfor %}
+    </div>
+
+    <div class="category">
+	<div class="cat_header">fin</div>
+	{% for idea in ideas|filter_status:'finished' %}
+	    <div class="object">
+		<div class="info">
+		    <h2><a href="idea/{{ idea.title|replacespaces }}/">{{ idea.title }}</a></h2>
+		    <p>{{ idea.short_desc }}</p></div>
+	    <div class="tags"><p> 
+		{% for tag in idea.tags.all %}
+		    {{ tag.tag }},
+		{% endfor %}
+		</p>
+	    </div>
+	    </div>
+	{% endfor %}
+    </div>
+
 
 </body>
 </html>

@@ -1,1 +1,60 @@
-p{color: green;}
+body {
+    width: 70%;
+    margin: auto;
+    padding-top: 5%;
+    background-color: #E9E9E9;
+}
+
+#main_header {
+    font-family: 'Playball', cursive;
+    text-align: center;
+}
+
+#button_new {
+    color: #FF8F24;
+    text-decoration: none;
+}
+
+#button_new:hover {
+    color: #FEAE37;
+}
+
+.category {
+    -mox-border-radius: 15px;
+    -webkit-boder-radius: 15px;
+    border-radius: 15px;
+    font-family: 'Oswald', sans-serif;
+    background-color: #1560B0;
+    color: #E0E0E0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #E6E1DC;
+}
+
+a:hover {
+    color: #FF8F24;
+}
+
+.cat_header {
+    -mox-border-radius: 15px 15px 0 0;
+    -webkit-boder-radius: 15px 15px 0 0;
+    border-radius: 15px 15px 0 0;
+    font-family: 'Playball', cursive;
+    font-size: 2em;
+    text-align: center;
+    background-color: #61473A;
+    text-shadow: 0 0 10px;
+    color: #E9E9E9;
+    border-bottom: 0.1em solid #E9E9E9;
+}
+
+.tags {
+    color: #B3B3B3;
+}
+
+.object {
+    border-top: 0.2em solid #E9E9E9;
+}

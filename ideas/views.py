@@ -35,6 +35,7 @@ def edit_idea(request, title_nospaces):
     # ripe for the editing!
     form = IdeaForm(initial={
 		    'title': idea.title,
+		    'status': idea.status,
 		    'short_desc': idea.short_desc,
 		    'long_desc': idea.long_desc,
 		    'links': get_field_string(idea.links),
@@ -55,7 +56,7 @@ def new_idea(request):
 	    title = save_idea(form)
 	    return HttpResponseRedirect('/ideas/idea/' + title.replace(' ','_') + '/')
     else:
-	form = IdeaForm() # unbound form
+	form = IdeaForm(initial={'status': 'idea'}) # unbound form
 
     return render(request, 'new_idea.html', {
 	'form': form,
@@ -80,6 +81,7 @@ def save_idea(form):
     # process data in form.cleaned_data
     title = form.cleaned_data['title']
     title_nospaces = str(title.replace(' ', '_').lower())
+    status = form.cleaned_data['status']
     short_desc = form.cleaned_data['short_desc']
     long_desc = form.cleaned_data['long_desc']
     date_formed = form.cleaned_data['date_formed']
@@ -88,7 +90,8 @@ def save_idea(form):
     sources_strings = form.cleaned_data['sources'].split(',')
     images_strings = form.cleaned_data['images'].split(',')
     # save new idea with cleaned form data
-    new_idea = Idea(title=title,short_desc=short_desc,long_desc=long_desc,date_formed=date_formed)
+    new_idea = Idea(title=title,status=status,short_desc=short_desc,
+		    long_desc=long_desc,date_formed=date_formed)
     new_idea.save()
     # add links, tags, sources, and images
     for link in links_strings:

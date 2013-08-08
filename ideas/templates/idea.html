@@ -6,7 +6,11 @@
 </head>
 <body>
 
-    <div class="info"><h2>TITLE: {{ idea.title }}</h2> 
+    <a id="home_link" href="/ideas/">HOME</a>
+    <div class="info">
+	
+	<h2>STATUS: {{ idea.status }}</h2>
+	<h2>TITLE: {{ idea.title }}</h2> 
 	<a href='/ideas/edit/{{ idea.title_nospaces }}/'>EDIT</a>
 	<div id="delete_div">
 	    <p>DELETE</p>

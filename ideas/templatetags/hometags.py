@@ -7,3 +7,7 @@ register = template.Library()
 @stringfilter
 def replacespaces(value):
     return value.replace(' ', '_')
+
+@register.filter
+def filter_status(queryset, status):
+    return queryset.filter(status=status)
