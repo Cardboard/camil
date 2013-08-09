@@ -1,0 +1,73 @@
+body {
+	width: 70%;
+	margin: auto;
+	padding-top: 5%;
+	background-color: #E9E9E9;
+}
+
+.info {
+	font-family: 'Oswald', sans-serif;
+    -mox-border-radius: 15px;
+    -webkit-boder-radius: 15px;
+    border-radius: 15px;
+	background-color: #1560B0;
+	color: #E0E0E0;
+	padding-bottom: 0.1em;
+	margin-bottom: 1em;
+}
+
+p,h3 {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+h3 {
+	color: #BABABA;
+}
+
+#home_link {
+	font-family: 'Playball', cursive;
+	font-size: 1.5em;
+}
+
+#title_header {
+	font-family: 'Playball', cursive;
+	text-align: center;
+	color: #E9E9E9;
+}
+
+#title {
+	text-shadow: 0 0 10px;
+}
+
+#title_header {
+    -mox-border-radius: 15px 15px 0 0;
+    -webkit-boder-radius: 15px 15px 0 0;
+    border-radius: 15px 15px 0 0;
+	background-color: #61473A;
+	border-bottom: 0.4em solid #E9E9E9;
+	height: 3em;
+}
+
+#edit {
+	font-size: 0.9em;
+	text-decoration: none;
+}
+
+a {
+    color: #FF8F24;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FEAE37;
+}
+
+#delete_div {
+	text-align: center;
+	color: #124A87; 
+}
+
+#delete_link {
+	display: none;
+}

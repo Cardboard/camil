@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-	{% load staticfiles %}
-	<style rel="stylesheet" href="{% static 'styles/idea.css' %}"></style>
-</head>
+	<head>
+		{% load staticfiles %}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+		<link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="{% static 'styles/idea.css' %}">
+
+		<script>
+			$(document).ready(function() {
+				$("#delete_div").click(function() {
+					$("#delete_link").toggle();
+				});
+			});
+		</script>
+	</head>
 <body>
 
-    <a id="home_link" href="/ideas/">HOME</a>
+    <a id="home_link" href="/ideas/">home</a>
     <div class="info">
-	
-	<h2>STATUS: {{ idea.status }}</h2>
-	<h2>TITLE: {{ idea.title }}</h2> 
-	<a href='/ideas/edit/{{ idea.title_nospaces }}/'>EDIT</a>
-	<div id="delete_div">
-	    <p>DELETE</p>
-	    <a id="delete_link" href='/ideas/delete/{{ idea.title_nospaces }}/'>I AM SURE!</a>
+	<div id="title_header">	
+		<h1>
+			<span id="status">{{ idea.status }} : </span>
+			<span id="title">{{ idea.title }}</span>
+			<a id="edit" href='/ideas/edit/{{ idea.title_nospaces }}/'>[*]</a>
+		</h1> 
 	</div>
 
-	    <h3>SHORT_DESC: </h3><p>{{ idea.short_desc }}</p>
-	    <h3>LONG_DESC: </h3><p> {{ idea.long_desc }}</p>
+	    <p id="short_desc">{{ idea.short_desc }}</p>
+	    <p id="long_desc"> {{ idea.long_desc }}</p>
 
 	    {# check if there are actually links, if not, don't show anything #}
 	    {% if idea.are_links %}
 	    <div class="links">
-		<h3>LINKS:</h3>
+		<h3>links:</h3>
 		<ul>
 		    {% for link in idea.links.all %}
 		    <li><a href="{{ link.url }}">{{ link.url }}</a></li>
@@ -35,7 +45,7 @@
 	    {# check if there are actually images, if not, don't show anything #}
 	    {% if idea.are_sources %}
 	    <div class="sources">
-		<h3>SOURCES:</h3>
+		<h3>sources:</h3>
 		<ul>
 		    {% for source in idea.sources.all %}
 			<li>{{ source.source }}</li>
@@ -47,7 +57,7 @@
 	    {# check if there are actually images, if not, don't show anything #}
 	    {% if idea.are_images == True %}
 	    <div class="images">
-		<h3>IMAGES:</h3>
+		<h3>images:</h3>
 		<ul>
 		    {% for image in idea.images.all %}
 		    <li><img src="{{ image.url}}" /></li>
@@ -58,7 +68,8 @@
 
 	    {# check if there are actually tags, if not, don't show anything #}
 	    {% if idea.are_tags %}
-	    <div class="tags"><p>TAGS: 
+		<div class="tags"><h3>tags:</h3> 
+		<p>
 		{% for tag in idea.tags.all %}
 		    {{ tag.tag }},
 		{% endfor %}
@@ -66,7 +77,12 @@
 	    </div>
 	    {% endif %}
 
-	    <p>DATE_FORMED: {{ idea.date_formed }}</p>
+		<div id="delete_div">
+			<p>delete</p>
+			<a id="delete_link" href='/ideas/delete/{{ idea.title_nospaces }}/'>I AM SURE!</a>
+		</div>
+
+	    <p>date formed: {{ idea.date_formed }}</p>
 
     </div>
 
