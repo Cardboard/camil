@@ -7,6 +7,15 @@
     {% load staticfiles %}
     {% load hometags %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css' %}">
+    <!-- collapsable categories --!>
+    <script>
+	$(document).ready(function() {
+	    $(".cat_header").click(function() {
+		var category = $(this).parent();
+		$("div:not(:first)", category).toggle();
+	    });
+	});
+    </script>
 </head>
 <body>
 

@@ -24,25 +24,26 @@ def edit_idea(request, title_nospaces):
 	print('Idea \'{}\' deleted!'.format(title_withspaces))
 
 	if form.is_valid(): # all validation rules pass
+	    print('Form is valid')
 	    title = save_idea(form)
 	    return HttpResponseRedirect('/ideas/idea/' + title.replace(' ','_') + '/')
     else:
 	form = IdeaForm() # unbound form
 
-    title_withspaces = title_nospaces.replace('_', ' ')
-    idea = Idea.objects.get(title__exact=title_withspaces)
-    # fill out form with the data from the object
-    # ripe for the editing!
-    form = IdeaForm(initial={
-		    'title': idea.title,
-		    'status': idea.status,
-		    'short_desc': idea.short_desc,
-		    'long_desc': idea.long_desc,
-		    'links': get_field_string(idea.links),
-		    'tags': get_field_string(idea.tags),
-		    'sources': get_field_string(idea.sources),
-		    'images': get_field_string(idea.images),
-		    'date_formed': idea.date_formed})
+	title_withspaces = title_nospaces.replace('_', ' ')
+	idea = Idea.objects.get(title__exact=title_withspaces)
+	# fill out form with the data from the object
+	# ripe for the editing!
+	form = IdeaForm(initial={
+			'title': idea.title,
+			'status': idea.status,
+			'short_desc': idea.short_desc,
+			'long_desc': idea.long_desc,
+			'links': get_field_string(idea.links),
+			'tags': get_field_string(idea.tags),
+			'sources': get_field_string(idea.sources),
+			'images': get_field_string(idea.images),
+			'date_formed': idea.date_formed})
     return render(request, 'new_idea.html', {
 	'form': form,
 	'idea': idea,
@@ -121,4 +122,4 @@ def delete_idea(request, title_nospaces):
     idea.delete()
     # get all ideas to populate the master list with
     ideas = Idea.objects.all()
-    return TemplateResponse(request, 'home.html', {'ideas': ideas})
+    return HttpResponseRedirect('/ideas')

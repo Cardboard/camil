@@ -28,7 +28,7 @@
 	</div>
 
 	    <p id="short_desc">{{ idea.short_desc }}</p>
-	    <p id="long_desc"> {{ idea.long_desc }}</p>
+	    <p id="long_desc"> {{ idea.long_desc|linebreaksbr }}</p>
 
 	    {# check if there are actually links, if not, don't show anything #}
 	    {% if idea.are_links %}
