@@ -85,12 +85,13 @@ class IdeaForm(forms.Form):
 	cleaned_data = self.cleaned_data
 	print('IdeaForm.clean()')
 	try:
-	    title = cleaned_data['title']
+	    title = cleaned_data['title'] 
 	    try:
+                # see if the idea with the entered title already exists
 		idea = Idea.objects.get(title__exact=title)
 	    except:
 		idea = False
-	    if title and idea:
+	    if title and idea: # idea already exists
 		raise forms.ValidationError("Title must be unique")
 	except KeyError:
 	    pass 

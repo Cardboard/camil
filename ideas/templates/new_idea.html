@@ -3,7 +3,11 @@
 <head>
 </head>
 <body>
-    <h1>Add New Idea</h1>
+    {% if edit %}
+        <h1>Edit Idea</h1>
+    {% else %}
+        <h1>Add New Idea</h1>
+    {% endif %}
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
