@@ -2,6 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.shortcuts import render
 from models import Idea, IdeaForm, Link, Tag, Source, Image
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
 
 def home(request):
     ideas = Idea.objects.all()
@@ -12,6 +15,7 @@ def single_idea(request, title_nospaces):
     idea = Idea.objects.get(title__exact=title_withspaces)
     return TemplateResponse(request, 'idea.html', {'idea': idea})
 
+@login_required(login_url='/ideas/login/')
 def edit_idea(request, title_nospaces):
     if request.method == 'POST': # if form has been submitted
 	form = IdeaForm(request.POST) # a form bound to the post data
@@ -50,6 +54,7 @@ def edit_idea(request, title_nospaces):
 	'edit': True
 	})
 
+@login_required(login_url='/ideas/login/')
 def new_idea(request):
     if request.method == 'POST': #if form has been submitted
 	form = IdeaForm(request.POST) # a form bound to the post data
@@ -123,3 +128,7 @@ def delete_idea(request, title_nospaces):
     # get all ideas to populate the master list with
     ideas = Idea.objects.all()
     return HttpResponseRedirect('/ideas')
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/ideas/')

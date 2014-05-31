@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.forms import ModelForm, Textarea
 from django import forms
@@ -26,7 +27,7 @@ class Idea(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     sources = models.ManyToManyField(Source, blank=True)
     images = models.ManyToManyField(Image, blank=True)
-    date_formed = models.DateField()
+    date_formed = models.DateField(default=datetime.datetime.now)
 
     def __unicode__(self):
         return self.title
@@ -63,7 +64,8 @@ class IdeaForm(forms.Form):
     sources = forms.CharField(required=False)
     images = forms.CharField(required=False)
     date_formed = forms.DateField(
-	widget=forms.widgets.DateInput(format="%m/%d/%Y"))
+	widget=forms.widgets.DateInput(format="%m/%d/%Y"),
+                                    initial=datetime.datetime.now)
 
 #    def clean_title(self):
 #	cleaned_title = self.cleaned_data

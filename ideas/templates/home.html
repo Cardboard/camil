@@ -18,7 +18,11 @@
     </script>
 </head>
 <body>
-
+    {% if is_logged_in %}
+    <a id="button_logout" href="/ideas/logout">logout</a>
+    {% else %}
+    <a id="button_login" href="/ideas/login">login</a>
+    {% endif %}
     <h1 id="main_header">camil
     <a id="button_new" href="/ideas/new/">[+]</a>
     </h1>

@@ -3,3 +3,7 @@ venv
 *.swp
 staticfiles
 *.sqlite3
+bin
+lib
+local
+include
