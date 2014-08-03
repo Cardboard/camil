@@ -7,6 +7,7 @@ urlpatterns = patterns('',
 	url(r'^delete/(?P<title_nospaces>\w+)/$', 'ideas.views.delete_idea'),
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'ideas.views.logout_view'),
+    url(r'^logged_out/$', 'ideas.views.logged_out'),
 	url(r'^$', 'ideas.views.home'),
 
 )

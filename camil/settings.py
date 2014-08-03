@@ -10,6 +10,8 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+LOGIN_REDIRECT_URL = '/ideas/'
+
 MANAGERS = ADMINS
 
 DATABASES = {

@@ -10,4 +10,12 @@ def replacespaces(value):
 
 @register.filter
 def filter_status(queryset, status):
+    print(len(queryset.filter(status=status)))
     return queryset.filter(status=status)
+
+@register.filter
+def is_empty(queryset, status):
+    if len(queryset.filter(status=status)) == 0:
+        return True
+    else:
+        return False
