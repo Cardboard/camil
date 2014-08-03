@@ -24,6 +24,7 @@ def edit_idea(request, title_nospaces):
 	# with two objects with the same title
 	title_withspaces = title_nospaces.replace('_', ' ')
 	old_idea = Idea.objects.get(title__exact=title_withspaces)
+        saved_idea = old_idea
 	old_idea.delete()
 	print('Idea \'{}\' deleted!'.format(title_withspaces))
 
@@ -31,9 +32,13 @@ def edit_idea(request, title_nospaces):
 	    print('Form is valid')
 	    title = save_idea(form)
 	    return HttpResponseRedirect('/ideas/idea/' + title.replace(' ','_') + '/')
+        else: # idea with same title still exists
+            idea = saved_idea
+            idea.save()
+
     else:
 	form = IdeaForm() # unbound form
-
+        
 	title_withspaces = title_nospaces.replace('_', ' ')
 	idea = Idea.objects.get(title__exact=title_withspaces)
 	# fill out form with the data from the object
