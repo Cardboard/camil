@@ -3,7 +3,7 @@ from django.template.response import TemplateResponse
 from django.shortcuts import render
 from models import Idea, IdeaForm, Link, Tag, Source, Image
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.contrib.auth.views import logout
 
 
 def home(request):
@@ -135,5 +135,8 @@ def delete_idea(request, title_nospaces):
     return HttpResponseRedirect('/ideas')
 
 def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/ideas/')
+    return logout(request, next_page='/ideas/logged_out')
+    #return HttpResponseRedirect('/ideas/')
+
+def logged_out(request):
+    return TemplateResponse(request, 'registration/logout.html')

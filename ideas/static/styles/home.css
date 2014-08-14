@@ -10,12 +10,6 @@ body {
     text-align: center;
 }
 
-#button_logout {
-    font-family: 'Playball', cursive;
-    text-align: left;
-    color: #FF8F24;
-}
-
 #button_new {
     color: #FF8F24;
     text-decoration: none;
@@ -42,6 +36,17 @@ a {
 
 a:hover {
     color: #FF8F24;
+}
+
+#button_login, #button_logout {
+    font-family: 'Playball', cursive;
+    text-align: left;
+    color: #FF8F24;
+    text-decoration: none;
+}
+
+#button_login:hover, #button_logout:hover {
+    color: #FEAE37
 }
 
 .cat_header {
