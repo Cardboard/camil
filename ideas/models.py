@@ -58,7 +58,7 @@ class IdeaForm(forms.Form):
 		('finished', 'finished'))
     status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
     short_desc = forms.CharField(max_length=128)
-    long_desc = forms.CharField(widget=forms.Textarea())
+    long_desc = forms.CharField(widget=forms.Textarea(), max_length=None)
     #long_desc = forms.Textarea()
     links = forms.CharField(required=False)
     tags = forms.CharField(required=False)
